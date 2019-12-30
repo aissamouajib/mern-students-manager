@@ -1,11 +1,24 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+
+import Navbar from './navbar.component';
+import Students from './students.component';
+import Professors from './professors.component';
+import Majors from './marjors.component';
 
 export default class Home extends Component{
     render(){
         return (
-            <h1>Welcome to the home page</h1>
+            <Router>
+                <Navbar />
+                <br/>
+                <div className="container">
+                    <Route path="/students" component={Students} />
+                    <Route path="/professors" component={Professors} />
+                    <Route path="/majors" component={Majors} />
+                </div>
+            </Router>
         );
     }
 }

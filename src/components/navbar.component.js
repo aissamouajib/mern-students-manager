@@ -6,14 +6,24 @@ export default class Navbar extends Component {
 
     render() {
         return (
-            <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
-                <div className="collpase navbar-collapse">
-                        <ul className="navbar-nav mr-auto">
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+                <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#"><h3>EST Essaouira</h3></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                    <ul class="navbar-nav ml-auto">
                         <li className="navbar-item">
-                            <Link to="/login" className="nav-link">Login</Link>
+                            <Link to="/students" className="nav-link"><h5>Students</h5></Link>
                         </li>
                         <li className="navbar-item">
-                            <Link to="/register" className="nav-link">Register</Link>
+                            <Link to="/professors" className="nav-link"><h5>Professors</h5></Link>
+                        </li>
+                        <li className="navbar-item">
+                            <Link to="/majors" className="nav-link"><h5>Majors</h5></Link>
                         </li>
                     </ul>
                 </div>
