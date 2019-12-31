@@ -11,7 +11,7 @@ export default class Home extends Component{
     render(){
         return (
             <Router>
-                <Navbar />
+                <Navbar signOut={this.props.signOut}/>
                 <br/>
                 <div className="container">
                     <Route path="/students" component={Students} />
