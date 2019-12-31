@@ -22,7 +22,8 @@ export default class Navbar extends Component {
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
                             {/* <a className="nav-link" href="#"><h3>EST Essaouira</h3></a> */}
-                            <h3 style={{color: 'white'}}>EST Essaouira</h3>
+                            {/* <h3 style={{color: 'white'}}>EST Essaouira</h3> */}
+                            <Link to="/" className="nav-link"><h3>EST Essaouira</h3></Link>
                         </li>
                     </ul>
                 </div>

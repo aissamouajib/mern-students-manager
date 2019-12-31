@@ -14,11 +14,11 @@ class App extends Component {
   }
   
   render() {
-    const app = this.state.loggedIn ? 
-      <Home signOut={() => this.setState({loggedIn: false,})}/> : 
-      <Login signIn={() => this.setState({loggedIn: true,})}/>;
+    // const app = this.state.loggedIn ? 
+    //   <Home signOut={() => this.setState({loggedIn: false,})}/> : 
+    //   <Login signIn={() => this.setState({loggedIn: true,})}/>;
 
-    // const app = <Home/>
+    const app = <Home/>
     return (
         <div className="App">
           {app}

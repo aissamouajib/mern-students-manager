@@ -6,6 +6,7 @@ import Navbar from './navbar.component';
 import Students from './students.component';
 import Professors from './professors.component';
 import Majors from './marjors.component';
+import Wellcome from './wellcome.component';
 
 export default class Home extends Component{
     render(){
@@ -14,6 +15,7 @@ export default class Home extends Component{
                 <Navbar signOut={this.props.signOut}/>
                 <br/>
                 <div className="container">
+                    <Route path="/" exact component={Wellcome} />
                     <Route path="/students" component={Students} />
                     <Route path="/professors" component={Professors} />
                     <Route path="/majors" component={Majors} />
