@@ -28,9 +28,9 @@ export default class Login extends Component {
         const password = this.state.password;
         const body = {email: email};
         axios.post('http://localhost:5000/admins/auth', body).then(res => {
-            console.log(res);
+            // console.log(res);
             if(res.data.length > 0){
-                if(res.data[0].password === password) this.props.signIn();
+                if(res.data[0].password === password) this.props.signIn(res.data[0]);
                 else alert('Password incorrect');
             }
             else alert('Email incorrect');
@@ -55,7 +55,7 @@ export default class Login extends Component {
                     <div>
                     <LockOutlinedIcon style={{fontSize: 80}} />
                     <h1>Admin Sign In</h1>
-                    <form  noValidate>
+                    <form  noValidate style={{paddingTop:40}}>
                         <TextField
                         variant="outlined"
                         margin="normal"
@@ -90,8 +90,9 @@ export default class Login extends Component {
                         variant="contained"
                         color="primary" 
                         onClick={this.submit}
+                        style={{marginTop: 40, paddingTop: 12}}
                         >
-                            <h3>Sign In</h3>
+                            <h4>Sign In</h4>
                         </Button>
                     </form>
                     </div>

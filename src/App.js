@@ -9,16 +9,22 @@ class App extends Component {
     super(props);
 
     this.state = {
-      loggedIn: false
+      loggedIn: false,
+      user: null,
+      // user: {
+      //   username: 'Aissam',
+      //   email: 'ouajibaissam@gmail.com',
+      //   password: 'Aissam123',
+      // },
     }
   }
   
   render() {
     const app = this.state.loggedIn ? 
-      <Home signOut={() => this.setState({loggedIn: false,})}/> : 
-      <Login signIn={() => this.setState({loggedIn: true,})}/>;
+      <Home signOut={() => this.setState({loggedIn: false,})} user={this.state.user}/> : 
+      <Login signIn={(user) => this.setState({loggedIn: true, user: user})}/>;
 
-    // const app = <Home/>
+    // const app = <Home user={this.state.user}/>
     return (
         <div className="App">
           {app}

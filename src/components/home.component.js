@@ -15,7 +15,7 @@ export default class Home extends Component{
                 <Navbar signOut={this.props.signOut}/>
                 <br/>
                 <div className="container">
-                    <Route path="/" exact component={Wellcome} />
+                    <Route path="/" exact component={() => <Wellcome user={this.props.user} />} />
                     <Route path="/students" component={Students} />
                     <Route path="/professors" component={Professors} />
                     <Route path="/majors" component={Majors} />
