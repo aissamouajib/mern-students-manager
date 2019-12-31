@@ -20,10 +20,18 @@ connection.once('open', () => {
 });
 
 const adminsRouter = require('./routes/admins');
-// const studentsRouter = require('./routes/students');
+const studentsRouter = require('./routes/students');
+const professorsRouter = require('./routes/professors');
+const majorsRouter = require('./routes/majors');
+const subjectsRouter = require('./routes/subjects');
+const marksRouter = require('./routes/marks');
 
 app.use('/admins', adminsRouter);
-// app.use('/students', studentsRouter);
+app.use('/students', studentsRouter);
+app.use('/professors', professorsRouter);
+app.use('/majors', majorsRouter);
+app.use('/subjects', subjectsRouter);
+app.use('/marks', marksRouter);
 
 
 app.listen(port, () => {
