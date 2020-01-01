@@ -16,4 +16,31 @@ router.route('/add').post((req, res) => {
   newProf.save().then(() => res.json('Professor added!')).catch(err => res.status(400).json('Error adding the Professor: ' + err));
 });
 
+router.route('/:id').get((req, res) => {
+  Professor.findById(req.params.id)
+    .then(prof => res.json(prof))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/:id').delete((req, res) => {
+  Professor.findByIdAndDelete(req.params.id)
+    .then(() => res.json('Professor deleted.'))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/update/:id').post((req, res) => {
+  Professor.findById(req.params.id)
+    .then(porf => {
+      porf.email = req.body.email;
+      porf.name = req.body.name;
+      porf.phone = req.body.phone;
+      porf.birthday = Date.parse(req.body.birthday);
+
+      porf.save()
+        .then(() => res.json('Professor updated!'))
+        .catch(err => res.status(400).json('Error: ' + err));
+    })
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 module.exports = router;

@@ -26,9 +26,9 @@ class App extends Component {
 
     const app = <Home user={this.state.user}/>
     return (
-        <div className="App">
-          {app}
-        </div>
+      <div className="App">
+        {app}
+      </div>
     );
   }
 }

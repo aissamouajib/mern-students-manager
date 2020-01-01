@@ -12,7 +12,15 @@ const Exercise = props => (
     <td>{props.student.phone}</td>
     <td>{props.student.birthday.substring(0,10)}</td>
     <td>
-      <Link to={"/edit/student/"+props.student._id} onClick={()=>console.log('hhhhhh')}>edit</Link> | <a href="#" onClick={() => { props.deleteStudent(props.student._id) }}>delete</a>
+      <Link to={"/edit/student/"+props.student._id} style={{marginRight: 10}}>
+        <button type="button" className="btn btn-dark btn-sl">
+        Edit
+        </button>
+      </Link> 
+        | 
+      <button type="button" style={{marginLeft: 10}} className="btn btn-dark btn-sl" onClick={() => { props.deleteStudent(props.student._id) }}>
+        Delete
+        </button>
     </td>
   </tr>
 )
@@ -28,6 +36,7 @@ export default class Students extends Component {
       majors: [],
       marks: [],
       avrgMarks:[],
+      subjects: [],
     };
   }
 
@@ -36,55 +45,34 @@ export default class Students extends Component {
       this.setState({students: response.data});
       axios.get('http://localhost:5000/marks').then(response => {
         this.setState({marks: response.data});
-        // console.log(this.state.marks);
         this.state.students.forEach(student => {
           var sum = 0;
           const marks = this.state.marks.filter(mark => mark.student === student._id);
-          // console.log(marks);
           marks.forEach(mark => {
-            // if(mark.mark !== null)
             sum+=mark.mark;
           });
           this.setState({avrgMarks: [...this.state.avrgMarks, {student: student._id, mark: sum/marks.length}]});
-          // console.log(this.state.avrgMarks);
         });
-        console.log(this.state.avrgMarks);
       }).catch(err => console.log(err));
     }).catch(err => console.log(err));
+
     axios.get('http://localhost:5000/majors').then(response => {
-      this.setState({majors: response.data});
+      this.setState({majors: response.data,});
     }).catch(err => console.log(err));
   }
 
   deleteStudent(id) {
-    axios.delete('http://localhost:5000/students/'+id)
-      .then(response => { console.log(response.data)});
-
+    axios.delete('http://localhost:5000/students/'+id).then(response => { console.log(response.data)});
     this.setState({
-      students: this.state.students.filter(el => el._id !== id)
-    })
+      students: this.state.students.filter(el => el._id !== id),
+    });
   }
 
   studentsList() {
-    var sum = 0;
     return this.state.students.map(currentStudent => {
       return <Exercise student={currentStudent} deleteStudent={this.deleteStudent} key={currentStudent._id} major={this.state.majors.filter(major => currentStudent.major === major._id).map(major => major.name)}
-      // mark={() => {
-      //   var sum = 0;
-      //   var marks = this.state.marks.filter(mark => currentStudent._id === mark.student).forEach(mark => sum+= mark.mark);
-      //   marks.forEach(mark => sum+= mark.mark);
-      //   return sum/marks.length;
-      // }}
-      mark={this.state.avrgMarks.filter(mark => mark.student === currentStudent._id).map(mark => mark.mark)}
-      />;
-    })
-  }
-
-  getMark(currentStudent){
-    var sum = 0;
-    var marks = this.state.marks.filter(mark => currentStudent._id === mark.student);
-    marks.forEach(mark => sum+= mark.mark);
-    return sum/marks.length;
+        mark={this.state.avrgMarks.filter(mark => mark.student === currentStudent._id).map(mark => mark.mark)}/>;
+    });
   }
 
   render() {

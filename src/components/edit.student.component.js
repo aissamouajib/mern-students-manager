@@ -21,7 +21,6 @@ export default class EditStudent extends Component {
       email: '',
       phone: '',
       birthday: new Date(),
-    //   majors: []
     }
   }
 
@@ -36,20 +35,6 @@ export default class EditStudent extends Component {
             birthday: new Date(response.data.birthday)
         });
     }).catch(function (error) {console.log(error);});
-
-    // axios.get('http://localhost:5000/majors/')
-    //   .then(response => {
-    //     if (response.data.length > 0) {
-    //       this.setState({
-    //         majors: response.data.map(major => major.name),
-    //         majorsobject: response.data,
-    //       });
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   })
-
   }
 
   onChangeMajor(e) {
@@ -83,7 +68,6 @@ export default class EditStudent extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    // const m = this.state.majorsobject.filter(major => major.name === this.state.major);
     const student = {
       major: this.state.major,
       name: this.state.name,
@@ -94,10 +78,7 @@ export default class EditStudent extends Component {
 
     console.log(student);
 
-    axios.post('http://localhost:5000/students/update/'+this.props.match.params.id, student)
-      .then(res => window.location = '/students');
-
-    // window.location = '/students';
+    axios.post('http://localhost:5000/students/update/'+this.props.match.params.id, student).then(res => window.location = '/students');
   }
 
   render() {
@@ -105,23 +86,6 @@ export default class EditStudent extends Component {
     <div className='text-left'>
       <h1>Edit Student:</h1>
       <form onSubmit={this.onSubmit}>
-        {/* <div className="form-row"> 
-          <label>Major: </label>
-          <select ref="userInput"
-              required
-              className="form-control"
-              value={this.state.major}
-              onChange={this.onChangeMajor}>
-              {
-                this.state.majors.map(function(user) {
-                  return <option 
-                    key={user}
-                    value={user}>{user}
-                    </option>;
-                })
-              }
-          </select>
-        </div> */}
         <div className="form-group"> 
           <label>Name: </label>
           <input  type="text"
