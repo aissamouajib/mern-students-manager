@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from '@material-ui/core/Button';
 
 export default class Majors extends Component {
   constructor(props){

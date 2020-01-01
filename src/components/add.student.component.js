@@ -21,7 +21,7 @@ export default class AddStudent extends Component {
       email: '',
       phone: '',
       birthday: new Date(),
-      majors: []
+      majors: [],
     }
   }
 
