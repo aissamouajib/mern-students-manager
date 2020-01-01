@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from '@material-ui/core/Button';
 
 export default class Majors extends Component {
   constructor(props){
     super(props);
 
-    // this.buildList = this.buildList.bind(this);
-
     this.state = {
       majors: [],
       subjects: [],
+      profs: [],
     }
   }
 
@@ -27,32 +28,47 @@ export default class Majors extends Component {
         console.log(this.state.subjects);
       }
     }).catch(err => console.log(err));
-  }
 
-  // buildList(){
-  //   return this.state.majors.map(major => {
-  //     return <li><h3>{major.name}</h3></li>
-  //   });
-  // }
+    axios.get('http://localhost:5000/professors').then(res =>{
+      if(res.data.length > 0){
+        this.setState({profs: res.data});
+      }
+    }).catch(err => console.log(err));
+  }
 
   render() {
     return (
       <div className='text-left'>
         <h1>EST Essaouira Majors and Subjects:</h1>
-        <br/>
-        <br/>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          style={{marginTop: 40, paddingTop: 12, float: 'right'}}
+          >
+            <h4>Add New Major</h4>
+          </Button>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <hr/>
         <ul>
           {this.state.majors.map((major, i) => 
+            <div className='text-left' style={{float: 'left', marginRight: 110}} key={i}>
+
             <li key={i}>
               <h2>{major.name}</h2>
               <ul>
                 {this.state.subjects.filter(subject => major.subjects.includes(subject._id)).map((subject, i) =>
                   <li key={i}>
-                    <h3>{subject.name}</h3>
+                    <h4>{subject.name}:<pre>{this.state.profs.filter(prof => prof._id === subject.professor).map(prof => prof.name)}</pre></h4>
                   </li>
                 )}
               </ul>
             </li>
+            </div>
           )}
         </ul>
       </div>
