@@ -39,21 +39,12 @@ export default class Majors extends Component {
   render() {
     return (
       <div className='text-left'>
-        <h1>EST Essaouira Majors and Subjects:</h1>
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          style={{marginTop: 40, paddingTop: 12, float: 'right'}}
-          >
-            <h4>Add New Major</h4>
-          </Button>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <hr/>
+        <button type="button" className="btn btn-dark btn-lg float-right">
+        Add New Major
+        </button>
+        <h1>EST Essouira Majors & Subjects:</h1>
+        <hr/>
+        <br/>
         <ul>
           {this.state.majors.map((major, i) => 
             <div className='text-left' style={{float: 'left', marginRight: 110}} key={i}>

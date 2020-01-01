@@ -7,6 +7,8 @@ import Students from './students.component';
 import Professors from './professors.component';
 import Majors from './marjors.component';
 import Wellcome from './wellcome.component';
+import EditStudent from './edit.student.component';
+import AddStudent from './add.student.component';
 
 export default class Home extends Component{
     constructor(props){
@@ -26,6 +28,8 @@ export default class Home extends Component{
                     <Route path="/students" component={Students} />
                     <Route path="/professors" component={Professors} />
                     <Route path="/majors" component={Majors} />
+                    <Route path="/edit/student/:id" component={EditStudent} />
+                    <Route path="/add/student" component={AddStudent} />
                 </div>
             </Router>
         );
