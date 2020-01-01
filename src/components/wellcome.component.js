@@ -10,13 +10,18 @@ export default class Welcome extends Component {
     super(props);
 
     this.updateInfo = this.updateInfo.bind(this);
+    this.addAdmin = this.addAdmin.bind(this);
 
     this.state = {
       user: this.props.user,
       email: this.props.user.email,
       username: '',
       currentpassword: '',
-      newpassword: '',  
+      newpassword: '',
+      eml: '',
+      usrname: '',
+      pswrd: '',
+      repeatpswrd: '',
     }
   }
 
@@ -33,21 +38,29 @@ export default class Welcome extends Component {
       axios.post('http://localhost:5000/admins/update/'+this.state.user._id, user).then(res => {
         // console.log(res.data);
         this.props.onUpdateUser(user);
-        // this.setState({
-        //   user: user,
-        //   username: '',
-        //   currentpassword: '',
-        //   newpassword: ''
-        // });
       }).catch(err => console.log(err));
     } else alert('Incorrect password');
+  }
+
+  addAdmin(e){
+    e.preventDefault();
+    if(this.state.pswrd === this.state.repeatpswrd){
+      const admin = {
+        email: this.state.eml,
+        username: this.state.usrname,
+        password: this.state.pswrd,
+      }
+      axios.post('http://localhost:5000/admins/add', admin).then(res => {
+        console.log('Admin added');
+        this.props.onUpdateUser(this.props.user);
+      }).catch(err => console.log(err));
+    }else alert('Password and Repeat Password Fields to not match');
   }
 
 
   render() {
     return (
       <div>
-        {/* <h1>Welcome {this.state.user.username}, your email is : {this.state.user.email}</h1> */}
         <h1>Welcome back, {this.state.user.username}.</h1>
         <br/>
         <br/>
@@ -65,20 +78,6 @@ export default class Welcome extends Component {
                         autoComplete="email"
                         disabled={true}
                         />
-                        {/* <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
-                        autoFocus
-                        onChange= {(e) =>{
-                          console.log(e.target.value);
-                        }}
-                        /> */}
                         <TextField
                         variant="outlined"
                         margin="normal"
@@ -142,6 +141,9 @@ export default class Welcome extends Component {
                         fullWidth
                         label="User Name"
                         autoComplete="username"
+                        onChange={(e) => this.setState({
+                          usrname: e.target.value,
+                        })}
                         />
                         <TextField
                         variant="outlined"
@@ -150,6 +152,9 @@ export default class Welcome extends Component {
                         fullWidth
                         label="Email Address"
                         autoComplete="email"
+                        onChange={(e) => this.setState({
+                          eml: e.target.value,
+                        })}
                         />
                         <TextField
                         variant="outlined"
@@ -159,6 +164,9 @@ export default class Welcome extends Component {
                         label="Password"
                         type="password"
                         autoComplete="current-password"
+                        onChange={(e) => this.setState({
+                          pswrd: e.target.value,
+                        })}
                         />
                         <TextField
                         variant="outlined"
@@ -168,6 +176,9 @@ export default class Welcome extends Component {
                         label="Repeat Password"
                         type="password"
                         autoComplete="current-password"
+                        onChange={(e) => this.setState({
+                          repeatpswrd: e.target.value,
+                        })}
                         />
                         <Button
                         type="submit"
@@ -175,6 +186,7 @@ export default class Welcome extends Component {
                         variant="contained"
                         color="primary"
                         style={{marginTop: 40, paddingTop: 12}} 
+                        onClick={this.addAdmin}
                         >
                             <h4>Add New Admin</h4>
                         </Button>
