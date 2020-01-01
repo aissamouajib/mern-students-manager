@@ -21,7 +21,7 @@ class App extends Component {
   
   render() {
     const app = this.state.loggedIn ? 
-      <Home signOut={() => this.setState({loggedIn: false,})} user={this.state.user}/> : 
+      <Home signOut={() => this.setState({loggedIn: false, user: null})} user={this.state.user}/> : 
       <Login signIn={(user) => this.setState({loggedIn: true, user: user})}/>;
 
     // const app = <Home user={this.state.user}/>

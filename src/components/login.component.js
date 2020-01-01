@@ -28,7 +28,6 @@ export default class Login extends Component {
         const password = this.state.password;
         const body = {email: email};
         axios.post('http://localhost:5000/admins/auth', body).then(res => {
-            // console.log(res);
             if(res.data.length > 0){
                 if(res.data[0].password === password) this.props.signIn(res.data[0]);
                 else alert('Password incorrect');
@@ -37,9 +36,7 @@ export default class Login extends Component {
         });
     }
 
-    onEmailChange(e){
-        console.log(e.target.value);
-    }
+    
     render(){
         return (
             <div className='container'>

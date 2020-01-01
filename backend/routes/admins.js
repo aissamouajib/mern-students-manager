@@ -19,4 +19,14 @@ router.route('/add').post((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/update/:id').post((req, res) => {
+  Admin.findById(req.params.id).then(admin => {
+    admin.username = req.body.username;
+    admin.email = req.body.email;
+    admin.password = req.body.password;
+
+    admin.save().then(() => res.json('Admin updated!')).catch(err => res.status(400).json('Error updating Admin: ' + err));
+  }).catch(err => res.status(400).json('Error: ' + err));
+});
+
 module.exports = router;
