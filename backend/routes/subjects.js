@@ -5,6 +5,7 @@ router.route('/').get((req, res) => {
     Subject.find().then(subjects => res.json(subjects)).catch(err => res.json("Error finding Subjects: "+ err));
 });
 
+
 router.route('/add').post((req, res) => {
   const name = req.body.name;
   const professor = req.body.professor;

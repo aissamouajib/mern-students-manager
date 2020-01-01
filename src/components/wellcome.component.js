@@ -60,11 +60,13 @@ export default class Welcome extends Component {
 
   render() {
     return (
-      <div>
+      <div className='text-left'>
         <h1>Welcome back, {this.state.user.username}.</h1>
         <br/>
         <br/>
         <div className='container'>
+          <div className='text-left'>
+
             <Grid container direction={'row'}>
                 <Container component="main" maxWidth="xs">
                     <form  noValidate>
@@ -194,6 +196,7 @@ export default class Welcome extends Component {
                     </form>
                 </Container>
             </Grid>
+          </div>
             </div>
       </div>
     );
