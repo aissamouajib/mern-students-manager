@@ -88,7 +88,7 @@ export default class EditStudent extends Component {
   render() {
     return (
     <div className='text-left'>
-      <h1>Edit Student:</h1>
+      <h1>Edit Professor:</h1>
       <form onSubmit={this.onSubmit}>
         <div className="form-group"> 
           <label>Name: </label>
@@ -128,7 +128,7 @@ export default class EditStudent extends Component {
         </div>
 
         <div className="form-group">
-          <input type="submit" value="Edit User" className="btn btn-lg btn-dark" />
+          <input type="submit" value="Edit Professor" className="btn btn-lg btn-dark" />
         </div>
       </form>
     </div>

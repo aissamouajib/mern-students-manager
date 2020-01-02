@@ -149,7 +149,7 @@ export default class AddStudent extends Component {
         </div>
 
         <div className="form-group">
-          <input type="submit" value="Add New User" className="btn btn-lg btn-dark" />
+          <input type="submit" value="Add New Student" className="btn btn-lg btn-dark" />
         </div>
       </form>
     </div>
