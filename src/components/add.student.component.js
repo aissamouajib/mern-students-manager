@@ -30,26 +30,29 @@ export default class AddStudent extends Component {
         if (response.data.length > 0) {
           this.setState({
             majors: response.data.map(major => major.name),
-            major: response.data[0].major,
+            major: response.data[0].name,
             majorsobject: response.data,
           });
+          console.log(response.data[0].name);
+          console.log(this.state.major);
         }
       })
       .catch((error) => {
         console.log(error);
-      })
-
+      });
   }
 
   onChangeMajor(e) {
+    console.log(e.target.value);
     this.setState({
-      major: e.target.value
-    })
+      major: e.target.value,
+    });
+    console.log(this.state.major);
   }
 
   onChangeName(e) {
     this.setState({
-      name: e.target.value
+      name: e.target.value,
     })
   }
 
@@ -102,10 +105,10 @@ export default class AddStudent extends Component {
               value={this.state.major}
               onChange={this.onChangeMajor}>
               {
-                this.state.majors.map(function(user) {
+                this.state.majors.map(function(major) {
                   return <option 
-                    key={user}
-                    value={user}>{user}
+                    key={major}
+                    value={major}>{major}
                     </option>;
                 })
               }
