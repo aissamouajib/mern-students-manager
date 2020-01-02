@@ -30,10 +30,10 @@ export default class Navbar extends Component {
                 <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
                     <ul className="navbar-nav ml-auto">
                         <li className="navbar-item">
-                            <Link to="/students" className="nav-link"><h5>Students</h5></Link>
+                            <Link to="/students" className="nav-link"><h5>Students & Marks</h5></Link>
                         </li>
                         <li className="navbar-item">
-                            <Link to="/professors" className="nav-link"><h5>Professors</h5></Link>
+                            <Link to="/professors" className="nav-link"><h5>Professors & Subject</h5></Link>
                         </li>
                         <li className="navbar-item">
                             <Link to="/majors" className="nav-link"><h5>Majors</h5></Link>

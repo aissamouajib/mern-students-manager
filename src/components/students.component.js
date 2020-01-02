@@ -83,7 +83,7 @@ export default class Students extends Component {
         Add New Student
         </button>
         </Link>
-        <h1>EST Essouira Students:</h1>
+        <h1>EST Essouira Students & Marks:</h1>
         <hr/>
         <table className="table">
           <thead className="thead-light">

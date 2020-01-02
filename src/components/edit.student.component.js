@@ -27,6 +27,7 @@ export default class EditStudent extends Component {
   componentDidMount() {
 
     axios.get('http://localhost:5000/students/'+this.props.match.params.id).then(response => {
+      // console.log(response.data);
         this.setState({
             major: response.data.major,
             name: response.data.name,
@@ -76,7 +77,7 @@ export default class EditStudent extends Component {
       birthday: this.state.birthday,
     }
 
-    console.log(student);
+    // console.log(student);
 
     axios.post('http://localhost:5000/students/update/'+this.props.match.params.id, student).then(res => window.location = '/students');
   }

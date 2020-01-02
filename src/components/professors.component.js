@@ -64,10 +64,10 @@ export default class Professors extends Component {
       <div className='text-left'>
         <Link to='/add/professor'>
         <button type="button" className="btn btn-dark btn-lg float-right">
-        Add New Professor
+        Add New Professor or Subject
         </button>
         </Link>
-        <h1>EST Essouira professors:</h1>
+        <h1>EST Essouira Professors & Subjects:</h1>
         <hr/>
         <table className="table">
           <thead className="thead-light">
