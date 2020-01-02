@@ -7,8 +7,8 @@ export default class EditStudent extends Component {
   constructor(props) {
     super(props);
 
-    this.onChangeMajor = this.onChangeMajor.bind(this);
     this.onChangeName = this.onChangeName.bind(this);
+    this.onChangeSubject = this.onChangeSubject.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePhone = this.onChangePhone.bind(this);
     this.onChangePhone = this.onChangePhone.bind(this);
@@ -16,8 +16,8 @@ export default class EditStudent extends Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      // major: '',
       name: '',
+      subject: '',
       email: '',
       phone: '',
       birthday: new Date(),
@@ -27,26 +27,31 @@ export default class EditStudent extends Component {
   componentDidMount() {
 
     axios.get('http://localhost:5000/professors/'+this.props.match.params.id).then(response => {
-      // console.log(response.data);
         this.setState({
-            // major: response.data.major,
             name: response.data.name,
             email: response.data.email,
             phone: response.data.phone,
-            birthday: new Date(response.data.birthday)
+            birthday: new Date(response.data.birthday),
         });
     }).catch(function (error) {console.log(error);});
-  }
 
-  onChangeMajor(e) {
-    this.setState({
-      major: e.target.value
-    })
+
+    axios.get('http://localhost:5000/subjects/prof/'+this.props.match.params.id).then(response => {
+      console.log(response.data);
+      if(response.data.length > 0) 
+        this.setState({subject: response.data[0].name, subj: response.data[0]});
+        // });
+    }).catch(function (error) {console.log(error);});
   }
 
   onChangeName(e) {
     this.setState({
       name: e.target.value
+    })
+  }
+  onChangeSubject(e) {
+    this.setState({
+      subject: e.target.value
     })
   }
 
@@ -69,26 +74,34 @@ export default class EditStudent extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    const student = {
-      // major: this.state.major,
+    const prof = {
       name: this.state.name,
       email: this.state.email,
       phone: this.state.phone,
       birthday: this.state.birthday,
     }
+    const subject = {
+      name: this.state.subject,
+      professor: this.props.match.params.id,
+    }
 
-    console.log(student);
+    console.log(prof);
+    console.log(this.state.subj);
 
-    axios.post('http://localhost:5000/professors/update/'+this.props.match.params.id, student).then(res => {
+    axios.post('http://localhost:5000/professors/update/'+this.props.match.params.id, prof).then(res => {
       console.log(res);
-      window.location = '/professors';
+      axios.post('http://localhost:5000/subjects/update/'+this.state.subj._id, subject).then(res => {
+        console.log(res);
+        window.location = '/professors';
+      }).catch(err => console.log(err));
     });
+
   }
 
   render() {
     return (
     <div className='text-left'>
-      <h1>Edit Professor:</h1>
+      <h1>Edit Professor & Subject:</h1>
       <form onSubmit={this.onSubmit}>
         <div className="form-group"> 
           <label>Name: </label>
@@ -97,6 +110,15 @@ export default class EditStudent extends Component {
               className="form-control"
               value={this.state.name}
               onChange={this.onChangeName}
+              />
+        </div>
+        <div className="form-group"> 
+          <label>Subject: </label>
+          <input  type="text"
+              required
+              className="form-control"
+              value={this.state.subject}
+              onChange={this.onChangeSubject}
               />
         </div>
         <div className="form-group"> 

@@ -73,7 +73,7 @@ export default class Professors extends Component {
           <thead className="thead-light">
             <tr>
               <th>Name</th>
-              <th>Major</th>
+              <th>Subject</th>
               <th>Email</th>
               <th>Phone</th>
               <th>Birthday</th>
