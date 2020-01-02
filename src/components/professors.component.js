@@ -22,7 +22,7 @@ const Exercise = props => (
         </button>
     </td>
   </tr>
-)
+);
 
 export default class Professors extends Component {
   constructor(props) {
@@ -55,8 +55,7 @@ export default class Professors extends Component {
 
   professorsList() {
     return this.state.professors.map(prof => {
-      return <Exercise prof={prof} deleteProf={this.deleteProf} key={prof._id} subject={this.state.subjects.filter(subject => prof._id === subject.professor).map(prof => prof.name)}
-       />;
+      return <Exercise prof={prof} deleteProf={this.deleteProf} key={prof._id} subject={this.state.subjects.filter(subject => prof._id === subject.professor).map(subject => subject.name)}/>;
     });
   }
 

@@ -11,7 +11,6 @@ export default class AddStudent extends Component {
     this.onChangeName = this.onChangeName.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePhone = this.onChangePhone.bind(this);
-    this.onChangePhone = this.onChangePhone.bind(this);
     this.onChangeBirthday = this.onChangeBirthday.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
