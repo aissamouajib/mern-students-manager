@@ -51,8 +51,9 @@ export default class Welcome extends Component {
         password: this.state.pswrd,
       }
       axios.post('http://localhost:5000/admins/add', admin).then(res => {
-        console.log('Admin added');
+        // console.log('Admin added');
         this.props.onUpdateUser(this.props.user);
+        alert('Admin Added!');
       }).catch(err => console.log(err));
     }else alert('Password and Repeat Password Fields to not match');
   }

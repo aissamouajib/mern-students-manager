@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom';
 
 export default class Majors extends Component {
   constructor(props){
@@ -38,9 +39,11 @@ export default class Majors extends Component {
   render() {
     return (
       <div className='text-left'>
-        <button type="button" className="btn btn-dark btn-lg float-right">
-        Add New Major
-        </button>
+        {/* <Link to={"/add/major"}>
+          <button type="button" className="btn btn-dark btn-lg float-right">
+          Add New Major
+          </button>
+        </Link> */}
         <h1>EST Essouira Majors & Subjects:</h1>
         <hr/>
         <br/>

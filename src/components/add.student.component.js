@@ -13,6 +13,7 @@ export default class AddStudent extends Component {
     this.onChangePhone = this.onChangePhone.bind(this);
     this.onChangeBirthday = this.onChangeBirthday.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.clearFields = this.clearFields.bind(this);
 
     this.state = {
       major: '',
@@ -22,6 +23,15 @@ export default class AddStudent extends Component {
       birthday: new Date(),
       majors: [],
     }
+  }
+
+  clearFields(){
+    this.setState({
+      name: '',
+      email: '',
+      phone: '',
+      birthday: new Date(),
+    });
   }
 
   componentDidMount() {
@@ -84,12 +94,10 @@ export default class AddStudent extends Component {
       birthday: this.state.birthday,
     }
 
-    console.log(student);
-
-    axios.post('http://localhost:5000/students/add', student)
-      .then(res => console.log(res.data));
-
-    window.location = '/students';
+    axios.post('http://localhost:5000/students/add', student).then(res => {
+      alert(res.data);
+      this.clearFields();
+    });
   }
 
   render() {

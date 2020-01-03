@@ -15,6 +15,8 @@ export default class AddProfessor extends Component {
     this.onChangeBirthday = this.onChangeBirthday.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onSubjectSubmit = this.onSubjectSubmit.bind(this);
+    this.getData = this.getData.bind(this);
+    this.clearFields = this.clearFields.bind(this);
 
     this.state = {
       name: '',
@@ -30,7 +32,23 @@ export default class AddProfessor extends Component {
     }
   }
 
-  componentDidMount(){
+  clearFields(){
+    this.setState({
+      name: '',
+      email: '',
+      phone: '',
+      birthday: new Date(),
+      subjects: [],
+      availableprofessors: [], 
+      professor: {
+        name: '',
+      },
+      subjectname: '',
+    });
+  }
+
+  getData(){
+    this.clearFields();
     axios.get('http://localhost:5000/subjects').then(res => {
       this.setState({subjects: res.data});
       axios.get('http://localhost:5000/professors').then(response => {
@@ -42,6 +60,10 @@ export default class AddProfessor extends Component {
         });
       }).catch(err => console.log(err));
     }).catch(err => console.log(err));
+  }
+
+  componentDidMount(){
+    this.getData();
   }
 
   onChangeProf(e) {
@@ -82,7 +104,6 @@ export default class AddProfessor extends Component {
 
   onSubjectSubmit(e){
     e.preventDefault();
-    // console.log(this.state.professor.name);
     const subject = {
         professor: this.state.professor._id,
         name: this.state.subjectname,
@@ -90,8 +111,8 @@ export default class AddProfessor extends Component {
 
 
     axios.post('http://localhost:5000/subjects/add', subject).then(res => {
-      console.log(res.data);
-      window.location = '/professors';
+      this.getData();
+      alert(res.data);
     });
   }
 
@@ -104,13 +125,10 @@ export default class AddProfessor extends Component {
       birthday: this.state.birthday,
     }
 
-    console.log(professor);
-
     axios.post('http://localhost:5000/professors/add', professor).then(res => {
-      console.log(res.data);
-      window.location = '/add/professor';
+      this.getData();
+      alert(res.data);
     });
-
   }
 
   render() {

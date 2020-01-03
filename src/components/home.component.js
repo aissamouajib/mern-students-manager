@@ -11,6 +11,7 @@ import EditStudent from './edit.student.component';
 import AddStudent from './add.student.component';
 import AddProfessor from './add.professor.component';
 import EditProfessor from './edit.professor.component';
+import AddMajor from './add.major.component';
 
 export default class Home extends Component{
     constructor(props){
@@ -34,6 +35,7 @@ export default class Home extends Component{
                     <Route path="/add/student" component={AddStudent} />
                     <Route path="/edit/professor/:id" component={EditProfessor} />
                     <Route path="/add/professor" component={AddProfessor} />
+                    {/* <Route path="/add/major" component={AddMajor} /> */}
                 </div>
             </Router>
         );
